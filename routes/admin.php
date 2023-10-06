@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    dd('admin dashboard');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
+
