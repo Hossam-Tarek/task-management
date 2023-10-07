@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $query->where('is_admin', 0);
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to_id');
+    }
 }

@@ -63,12 +63,12 @@
                     </ul>
                 </li>
 
-{{--                <li class="nav-item">--}}
-{{--                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ request()->routeIs('admin.users.index') ? 'active' : '' }}">--}}
-{{--                        <i class="fas fa-users mx-1"></i>--}}
-{{--                        <p class="mx-2">{{ __('admin.users') }}</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.statistics') }}" class="nav-link {{ request()->routeIs('admin.statistics') ? 'active' : '' }}">
+                        <i class="fas fa-chart-bar mx-1"></i>
+                        <p class="mx-2">{{ __('Statistics') }}</p>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <form method="POST" id="logout-form" action="{{ route('logout') }}">
