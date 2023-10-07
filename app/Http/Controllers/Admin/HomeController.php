@@ -18,6 +18,7 @@ class HomeController extends Controller
             // These statistic could be called from some sort of service or repository but no need
             // to over-engineer here it's just simple.
             'usersCount' => User::user()->count(),
+            'adminsCount' => User::admin()->count(),
             'tasksCount' => Task::query()->count(),
         ]);
     }

@@ -19,6 +19,20 @@
             <!-- small box -->
             <div class="small-box bg-success">
                 <div class="inner">
+                    <h3>{{ $adminsCount }}</h3>
+
+                    <p>{{ __('Admins') }}</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-primary">
+                <div class="inner">
                     <h3>{{ $tasksCount }}</h3>
 
                     <p>{{ __('Tasks') }}</p>
