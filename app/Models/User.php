@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function scopeAdmin($query)
+    {
+        return $query->where('is_admin', 1);
+    }
+
+    public function scopeUser($query)
+    {
+        return $query->where('is_admin', 0);
+    }
 }
