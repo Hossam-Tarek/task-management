@@ -79,6 +79,6 @@ class TaskController extends Controller
     {
         $taskRepository->delete($task);
 
-        return back();
+        return redirect()->route('admin.tasks.index');
     }
 }
