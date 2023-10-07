@@ -42,5 +42,8 @@
         @endforeach
         </tbody>
     </table>
+    <div class="my-2">
+        {{ $tasks->links('pagination::bootstrap-4') }}
+    </div>
 
 </x-admin.layouts.card>
