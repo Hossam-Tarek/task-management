@@ -24,7 +24,8 @@ class TaskRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'assigned_to_id' => 'required|exists:users',
+            'assigned_by_id' => 'required|exists:users,id',
+            'assigned_to_id' => 'required|exists:users,id',
         ];
     }
 }

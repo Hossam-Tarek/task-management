@@ -8,21 +8,22 @@ use App\Repositories\Interfaces\TaskRepositoryInterface;
 class TaskRepository implements TaskRepositoryInterface
 {
 
-    public function create(int $assigned_by_id, string $title, string $description, int $assigned_to_id): Task
+    public function create(string $title, string $description, int $assigned_by_id, int $assigned_to_id): Task
     {
         return Task::create([
-            'assigned_by_id' => $assigned_by_id,
             'title' => $title,
             'description' => $description,
+            'assigned_by_id' => $assigned_by_id,
             'assigned_to_id' => $assigned_to_id,
         ]);
     }
 
-    public function update(Task|int $task, string $title, string $description, int $assigned_to_id): void
+    public function update(Task|int $task, string $title, string $description, int $assigned_by_id, int $assigned_to_id): void
     {
         $this->getTask($task)->update([
             'title' => $title,
             'description' => $description,
+            'assigned_by_id' => $assigned_by_id,
             'assigned_to_id' => $assigned_to_id,
         ]);
     }

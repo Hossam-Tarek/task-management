@@ -7,6 +7,7 @@ use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\Models\User;
 use App\Repositories\Interfaces\TaskRepositoryInterface;
+use Illuminate\Support\Facades\Cache;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('admin.tasks.index');
+        return view('admin.tasks.index', [
+            'tasks' => Task::with(['assignedTo', 'assignedBy'])->paginate(10),
+        ]);
     }
 
     /**
@@ -23,8 +26,17 @@ class TaskController extends Controller
      */
     public function create()
     {
+        $admins = Cache::remember('admins', now()->addDay(), function () {
+            return User::select(['id', 'name', 'email'])->admin()->get();
+        });
+
+        $users = Cache::remember('users', now()->addDay(), function () {
+            return User::select(['id', 'name', 'email'])->user()->get();
+        });
+
         return view('admin.tasks.create', [
-            'users' => User::select(['id', 'name', 'email'])->user()->get(),
+            'admins' => app('admins'),
+            'users' => app('users'),
         ]);
     }
 
@@ -33,9 +45,9 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request, TaskRepositoryInterface $taskRepository)
     {
-        $taskRepository->create(auth()->id(), ...$request->validated());
+        $taskRepository->create(...$request->validated());
 
-        return redirect('admin.tasks.index');
+        return redirect()->route('admin.tasks.index');
     }
 
     /**
@@ -45,7 +57,8 @@ class TaskController extends Controller
     {
         return view('admin.tasks.edit', [
             'task' => $task,
-            'users' => User::select(['id', 'name', 'email'])->user()->get(),
+            'admins' => app('admins'),
+            'users' => app('users'),
         ]);
     }
 
@@ -56,7 +69,7 @@ class TaskController extends Controller
     {
         $taskRepository->update($task, ...$request->validated());
 
-        return redirect('admin.tasks.index');
+        return redirect()->route('admin.tasks.index');
     }
 
     /**

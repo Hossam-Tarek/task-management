@@ -13,4 +13,14 @@ class Task extends Model
         'assigned_to_id',
         'assigned_by_id',
     ];
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class, 'assigned_to_id');
+    }
+
+    public function assignedBy()
+    {
+        return $this->belongsTo(User::class, 'assigned_by_id');
+    }
 }

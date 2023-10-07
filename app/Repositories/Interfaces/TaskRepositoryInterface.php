@@ -11,13 +11,13 @@ interface TaskRepositoryInterface
     /**
      * Create a new task.
      *
-     * @param int $assigned_by_id
      * @param string $title
      * @param string $description
+     * @param int $assigned_by_id
      * @param int $assigned_to_id
      * @return Task
      */
-    public function create(int $assigned_by_id, string $title, string $description, int $assigned_to_id): Task;
+    public function create(string $title, string $description, int $assigned_by_id, int $assigned_to_id): Task;
 
     /**
      * Update the task
@@ -25,11 +25,12 @@ interface TaskRepositoryInterface
      * @param Task|int $task
      * @param string $title
      * @param string $description
-     * @param void
-     * @return Task
+     * @param int $assigned_by_id
+     * @param int $assigned_to_id
+     * @return void
      * @throws ModelNotFoundException
      */
-    public function update(Task|int $task, string $title, string $description, int $assigned_to_id): void;
+    public function update(Task|int $task, string $title, string $description, int $assigned_by_id, int $assigned_to_id): void;
 
     /**
      * Delete the task.
