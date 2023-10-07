@@ -41,8 +41,12 @@ Task Management is a dashboard through it the can create tasks and assign it to 
    ```shell
    php artisan migrate:fresh --seed
    ```
-
-8. Start the Laravel development server:
+8. Run the npm commands:
+   ```shell
+   npm install && npm run build
+   ```
+   
+9. Start the Laravel development server:
    ```shell
    php artisan serve
    ```
